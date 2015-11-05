@@ -125,6 +125,7 @@
 		</script>
 	<% 	}
 		if(i==cabinetSize-1){
+			var id= userId;
         %>
                 <script>
                  $(function(){
@@ -140,7 +141,10 @@
                                 function(){
                                         alert("이미 신청된 사물함입니다.");
                                 }
-                        );                      
+                        );
+
+			alert("<%=id%>"); 
+		                     
                 }
                 );
                 </script>

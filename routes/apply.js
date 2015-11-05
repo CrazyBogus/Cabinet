@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 		}	
 
 	res.render('apply1',{ cabinet_status : cabinets});
-	connection.release();	
+	connection.release();
 	});
       });
 });

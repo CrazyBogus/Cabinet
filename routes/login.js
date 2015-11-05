@@ -14,8 +14,8 @@ var pool = mysql.createPool({
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	var message='start';
-  res.render('login',{ee: message});
-  res.console("Asdasd");
+	res.render('login',{ee: message});
+	res.console("Received get request");
 });
 
 
@@ -40,9 +40,9 @@ router.post('/',function(req,res,next){
             if(money==0)
               message="학생회비를 미납하셨습니다.";
               
-            else
-              res.redirect("/apply");  
-
+            else{
+              res.redirect("/apply");
+	      }
             }
 
           else
@@ -51,6 +51,7 @@ router.post('/',function(req,res,next){
 
             res.render('login', {title: 'test', ee:message});
             connection.release();
+
 
             // Don't use the connection here, it has been returned to the pool.
       });
