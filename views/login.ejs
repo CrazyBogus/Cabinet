@@ -1,0 +1,104 @@
+<DOCTYPE html >
+<html>
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <style type="text/css">
+                body {
+                                height: 100%;
+                                margin: 0;
+                                padding: 0;
+                     }
+                #loginBox{
+                                width: 200px;
+                                height: 150px;
+                                position: absolute;
+                                top: 50%;
+                                left: 49%;
+                                margin: -100px 0 0 -100px;
+                                border: 1px inset #ddd;
+                            }
+		#hy{width:200px; height:200px; background:pink; position:absolute; top:50px; left:50px}
+	
+        </style>
+
+        <script src="/javascripts/jquery-1.11.3.min.js"></script>
+  <script>
+  $(function(){
+	$("#CHECK").click(
+      function(){
+
+             if($("#studentID").val()==""){
+                       alert('학번을 입력하세요');
+                       return;
+                 }
+
+              else if ($("#pwd").val()==""){
+
+                alert('비밀번호를 입력하세요');
+
+                        return;
+              }
+
+
+
+          $("#LOGIN").submit();
+
+      }
+      );
+
+});
+
+
+</script>
+
+      
+        </head>
+        <body>
+             <form id="LOGIN" action="/login" method="post">
+              <% 
+		 var index= ee;
+
+                if(index=='start')
+                  {
+               %>     
+
+                <div id="loginBox">
+                        <form>
+                                학번:<input type="text" id="studentID" name="studentID"/><br/>
+                                이름:<input type="text" id="pwd" name="pwd"/><br/>
+                                <input type="button" id="CHECK" name="join" value="로그인">
+                        </form>
+                </div>
+
+                <%  }  else if(index=='false'){  %>
+			 <script>
+
+                        	alert('학번과 이름을 확인해주세요.');
+                    
+        	          </script>
+		
+               		   <div id="loginBox">
+                        	<form>
+                                	학번:<input type="text" id="studentID" name="studentID"/><br/>
+                                	이름:<input type="text" id="pwd" name="pwd"/><br/>
+                               		<input type="button" id="CHECK" name="mk" value="로그인">
+                        	</form>
+                	   </div>
+            
+             
+                 
+	     
+
+	     <%}else
+	      {%>
+		<script>
+			alert("학생회비를 미납하셨습니다. 관리자에게 문의해주세요.");
+		</script>
+	     <% 
+	       }   
+             %>
+	
+		
+
+        </body>
+</html>
