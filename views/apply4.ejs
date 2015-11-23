@@ -1,0 +1,425 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="/javascripts/jquery-1.11.3.min.js"></script>
+        </script>
+	<style>
+	    .usable {
+
+                -moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+
+                -webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+
+                box-shadow:inset 0px 1px 0px 0px #a4e271;
+
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+
+                background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+                background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+                background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+                background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+
+                background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+
+                background-color:#89c403;
+
+                -moz-border-radius:6px;
+
+                -webkit-border-radius:6px;
+
+                border-radius:6px;
+
+                border:1px solid #74b807;
+
+                display:inline-block;
+
+                cursor:pointer;
+
+                color:#ffffff;
+
+                font-family:Arial;
+
+                font-size:15px;
+
+                font-weight:bold;
+
+                padding:8px 24px;
+
+                text-decoration:none;
+
+                text-shadow:0px 1px 0px #528009;
+
+                }
+
+        .usable:hover {
+
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+
+                background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+                background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+                background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+                background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+
+                background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+
+                background-color:#77a809;
+
+        }
+
+        .usable:active {
+
+                position:relative;
+
+                top:1px;
+
+        }
+
+        .notusable {
+
+                -moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+
+                -webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+
+                box-shadow:inset 0px 1px 0px 0px #f5978e;
+
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
+
+                background:-moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+
+                background:-webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+
+                background:-o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+
+                background:-ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
+
+                background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+
+                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
+
+                background-color:#f24537;
+
+                -moz-border-radius:6px;
+
+                -webkit-border-radius:6px;
+
+ border-radius:6px;
+
+                border:1px solid #d02718;
+
+                display:inline-block;
+
+                cursor:pointer;
+
+                color:#ffffff;
+
+                font-family:Arial;
+
+                font-size:15px;
+
+                font-weight:bold;
+
+                padding:8px 24px;
+
+                text-decoration:none;
+
+                text-shadow:0px 1px 0px #810e05;
+
+        }
+
+        .notusable:hover {
+
+                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
+
+                background:-moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+
+                background:-webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+
+                background:-o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+
+                background:-ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
+
+                background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
+
+                background-color:#c62d1f;
+
+        }
+
+        .mysubmit:active {
+
+                position:relative;
+
+                top:1px;
+
+        }
+
+
+
+
+	</style>
+
+
+</head>
+
+<body>
+
+ <%
+                var cabinetSize = cabinet_status.length;
+                for(var i =0; i<cabinetSize; i++)
+                {
+                        var cabinetNumber = cabinet_status[i].번호;
+      var cabinetState = cabinet_status[i].사용;
+
+                if(cabinetState==0) {
+        %>
+                <script>
+
+                        $(function(){
+
+                                var tag = $('#<%=cabinetNumber%>');
+                                tag.addClass('notusable');
+                        }
+                        );
+                </script>
+        <%      }
+                else{
+        %>
+                <script>
+                        $(function(){
+                                var tag = $('#<%=cabinetNumber%>');
+                                tag.addClass('usable');
+                        }
+                        );
+
+                </script>
+        <%      }
+                if(i==cabinetSize-1){
+        %>
+
+                <script>
+
+                 $(function(){
+                        $(".usable").click(
+                                function(){
+                                         var selected = $(this).val();
+                                         var result= confirm(selected+" 신청하시겠습니까?");
+
+
+                      }
+
+            );
+                        $(".notusable").click(
+                                function(){
+                                        alert("이미 신청된 사물함입니다.");
+                                                                                                                                                                return false;
+                                }
+                        );
+
+                        
+                  var getParameter = function (param) {
+                                var returnValue;
+                                var url = $(location).attr('href');
+                                var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+                                for (var i = 0; i < parameters.length; i++) {
+                                        var varName = parameters[i].split('=')[0];
+                                        if (varName.toUpperCase() == param.toUpperCase()) {
+                                                returnValue = parameters[i].split('=')[1];
+                                                return decodeURIComponent(returnValue);
+                                                }
+                                        }
+                                };
+                        
+                        var grade=getParameter('grade');
+                        var id=getParameter('id');
+                        var name=getParameter('name');
+
+
+                        $( "#id" ).text(id);
+                        $("#name").text(name);
+                        $("#grade").text(grade);
+
+
+                }
+                );
+                </script>
+        <%
+                }
+
+        }
+        %>
+
+
+        <script>
+        var status=<%=msg%>;
+
+                if(status=='0')
+                        alert('로그인완료');
+                else if(status=='1')
+                        alert('사물함신청완료');
+                else
+                        alert('이미 신청되었습니다.');
+
+        </script>
+
+
+
+	 <table id='form'>
+                <tr rowspan='2'>
+                <td colspan='2'><h1 id='head'>4학년 사물함신청 페이지</h1></td>
+                </tr>
+
+                <tr rowspan='6'>
+                <td colspan='2' border='1'>
+                        <p>학번:<p id='id'/></p></p>
+                        <p>이름:<p id='name'/></p></p>
+                        <p>학년:<p id='grade'></p></p>
+                </td>
+                <td colspan='6'>
+                <table border="10">
+                <form action="/apply" method="post">
+
+		<tr>
+		<td rowspan="5" colspan="5">3학년사물함</td>
+		 <td><input type="submit" name="cabinet" id="D1" value="D1" /></td>
+		 <td><input type="submit" name="cabinet" id="D2" value="D2" /></td>
+		 <td><input type="submit" name="cabinet" id="D11" value="D11" /></td>
+		 <td><input type="submit" name="cabinet" id="D12" value="D12" /></td>
+		</tr>
+		 <tr>
+                 <td><input type="submit" name="cabinet" id="D3" value="D3" /></td>
+                 <td><input type="submit" name="cabinet" id="D4" value="D4" /></td>
+                 <td><input type="submit" name="cabinet" id="D13" value="D13" /></td>
+                 <td><input type="submit" name="cabinet" id="D14" value="D14" /></td>
+                </tr>
+		 <tr>
+                 <td><input type="submit" name="cabinet" id="D5" value="D5" /></td>
+                 <td><input type="submit" name="cabinet" id="D6" value="D6" /></td>
+                 <td><input type="submit" name="cabinet" id="D15" value="D15" /></td>
+                 <td><input type="submit" name="cabinet" id="D16" value="D16" /></td>
+                </tr>
+		 <tr>
+                 <td><input type="submit" name="cabinet" id="D7" value="D7" /></td>
+                 <td><input type="submit" name="cabinet" id="D8" value="D8" /></td>
+                 <td><input type="submit" name="cabinet" id="D17" value="D17" /></td>
+                 <td><input type="submit" name="cabinet" id="D18" value="D18" /></td>
+                </tr>
+		 <tr>
+                 <td><input type="submit" name="cabinet" id="D9" value="D9" /></td>
+                 <td><input type="submit" name="cabinet" id="D10" value="D10" /></td>
+                 <td><input type="submit" name="cabinet" id="D19" value="D19" /></td>
+                 <td><input type="submit" name="cabinet" id="D20" value="D20" /></td>
+                </tr>
+		<tr>
+		<td colspan="9">복도</td>
+		</tr>
+		 <tr>
+		<td colspan="9">232호실</td>
+                </tr>
+
+		</form>
+		</table>
+
+		<br/><br/><br/>
+
+		
+
+		 <table border="10">
+                <form action="/apply" method="post">
+		
+		<tr rowspan="5">
+		<td rowspan="5" colspan="5"></td>
+		   <td><input type="submit" name="cabinet" id="B71" value="B71" /></td>
+                 <td><input type="submit" name="cabinet" id="B72" value="B72" /></td>
+                 <td><input type="submit" name="cabinet" id="B81" value="B81" /></td>
+                 <td><input type="submit" name="cabinet" id="B82" value="B82" /></td>
+		 <td rowspan="5" colspan="5"></td>
+		</tr>
+		
+		  <tr>
+                   <td><input type="submit" name="cabinet" id="B73" value="B73" /></td>
+                 <td><input type="submit" name="cabinet" id="B74" value="B74" /></td>
+                 <td><input type="submit" name="cabinet" id="B83" value="B83" /></td>
+                 <td><input type="submit" name="cabinet" id="B84" value="B84" /></td>
+                </tr>
+
+
+		  <tr>
+                   <td><input type="submit" name="cabinet" id="B75" value="B75" /></td>
+                 <td><input type="submit" name="cabinet" id="B76" value="B76" /></td>
+                 <td><input type="submit" name="cabinet" id="B85" value="B85" /></td>
+                 <td><input type="submit" name="cabinet" id="B86" value="B86" /></td>
+                </tr>
+
+
+		  <tr>
+                   <td><input type="submit" name="cabinet" id="B77" value="B77" /></td>
+                 <td><input type="submit" name="cabinet" id="B78" value="B78" /></td>
+                 <td><input type="submit" name="cabinet" id="B87" value="B87" /></td>
+                 <td><input type="submit" name="cabinet" id="B88" value="B88" /></td>
+                </tr>
+
+
+		  <tr>
+                   <td><input type="submit" name="cabinet" id="B79" value="B79" /></td>
+                 <td><input type="submit" name="cabinet" id="B80" value="B80" /></td>
+                 <td><input type="submit" name="cabinet" id="B89" value="B89" /></td>
+                 <td><input type="submit" name="cabinet" id="B90" value="B90" /></td>
+                </tr>
+
+		<tr>
+		 <td><input type="submit" name="cabinet" id="B62" value="B62" /></td>
+		 <td><input type="submit" name="cabinet" id="B64" value="X" /></td>
+		 <td><input type="submit" name="cabinet" id="B66" value="B66" /></td>
+		 <td><input type="submit" name="cabinet" id="B68" value="B68" /></td>
+		 <td><input type="submit" name="cabinet" id="B70" value="B70" /></td>
+		 <td rowspan="2" colspan="4"></td>
+		 <td><input type="submit" name="cabinet" id="B99" value="B99" /></td>
+                 <td><input type="submit" name="cabinet" id="B97" value="B97" /></td>
+                 <td><input type="submit" name="cabinet" id="B95" value="B95" /></td>
+                 <td><input type="submit" name="cabinet" id="B93" value="B93" /></td>
+                 <td><input type="submit" name="cabinet" id="B91" value="B91" /></td>
+		</tr>
+
+		  <tr>
+                 <td><input type="submit" name="cabinet" id="B61" value="B61" /></td>
+                 <td><input type="submit" name="cabinet" id="B63" value="B63" /></td>
+                 <td><input type="submit" name="cabinet" id="B65" value="B65" /></td>
+                 <td><input type="submit" name="cabinet" id="B67" value="X" /></td>
+                 <td><input type="submit" name="cabinet" id="B69" value="B69" /></td>
+                
+
+		 <td><input type="submit" name="cabinet" id="B100" value="B100" /></td>
+                 <td><input type="submit" name="cabinet" id="B98" value="B98" /></td>
+                 <td><input type="submit" name="cabinet" id="B96" value="B96" /></td>
+                 <td><input type="submit" name="cabinet" id="B94" value="B94" /></td>
+                 <td><input type="submit" name="cabinet" id="B92" value="B92" /></td>
+                </tr>
+		
+		<tr>
+		<td colspan="14">복도</td>
+		</tr>
+
+		<tr>
+		<td  colspan="5">231호실</td>
+		<td  colspan="4">A-1구역</td>
+		<td  colspan="5">232호실</td>
+		</tr>
+
+		</table>
+		
+</body>
+</html>
+
+
