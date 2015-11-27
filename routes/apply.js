@@ -4,7 +4,7 @@ var router = express.Router();
 
 var pool = mysql.createPool({
   connectionLimit: 3,
-  host: '52.69.46.152',
+  host: 'localhost',
   user: 'kmucsHI',
   database: 'cabinet',
   password: 'kmucs'
@@ -56,7 +56,7 @@ router.get('/', function(req, res, next) {
 
       var student_infos={ id:studentID , name:studentName, grade:studentGrade, cabinet:cabinet_number}
 
-      
+
       if(studentGrade == 1){
         res.render('apply1',{ cabinet_status : cabinets , student_infos:student_infos, msg : status });
 

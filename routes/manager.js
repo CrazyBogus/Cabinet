@@ -5,7 +5,7 @@ var router = express.Router();
 
 var pool = mysql.createPool({
   connectionLimit: 3,
-  host: '52.69.46.152',
+  host: 'localhost',
   user: 'kmucsHI',
   database: 'cabinet',
   password: 'kmucs'
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 	   else str= '유저 신청 가능함';
 
 	   var mss='관리자 페이지 입니다.';
-	
+
 	res.render('manager',{message:mss,sta:'get',string:str});
 	});
 	connection.release();
@@ -47,16 +47,16 @@ router.post('/', function(req,res,next){
 		if(func1=='start'){
 			connection.query('UPDATE StartFlag set flag=?','1',function(err,arr){
 				if(err) throw err;
-		        str="유저 신청 가능함"	
+		        str="유저 신청 가능함"
 			mss="유저가 신청 가능하게 됬습니다";
 			sta1='start';
 			res.render('manager',{message:mss,sta:sta1,string:str});
 			});
 		} // 신청 가능
-		if(func1=='end'){                        
+		if(func1=='end'){
 			connection.query('UPDATE StartFlag set flag=?','0',function(err,arr){
                                 if(err) throw err;
-                        
+
                         mss="유저가 신청 불가능하게 됬습니다";
 			str="유저 신청 불가능함"
                         sta1='end';
@@ -77,7 +77,7 @@ router.post('/', function(req,res,next){
 			connection.query('SELECT * FROM Relation_Stu_Cab',function(err,rows){
                                 if(err) throw err;
 				console.log(rows.length);
-				
+
 				for(var i=0; i<rows.length; i++)
 				{
 					var cabinetNo=rows[i].CabinetNo;
@@ -100,7 +100,7 @@ router.post('/', function(req,res,next){
 
         						});
 						}
-							
+
 					  });
 				}
 				connection.query('DELETE FROM Relation_Stu_Cab',function(err,rows){
@@ -113,7 +113,7 @@ router.post('/', function(req,res,next){
 				res.render('manager',{message:mss,sta:sta1});
 				});
                         });
-	
+
 		}
 		if(func1=='list') // 신청 정보 모두 보기
 		{
@@ -124,10 +124,10 @@ router.post('/', function(req,res,next){
 				sta1='list'
 				console.log(rows);
 				res.render('manager',{message:mss,rel_info:info,sta:sta1});
-				
+
 			});
-		} 
-			
+		}
+
 
 
 
@@ -145,4 +145,3 @@ connection.release();
 
 
 module.exports = router;
-                           
