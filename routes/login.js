@@ -4,7 +4,7 @@ var router = express.Router();
 
 var pool = mysql.createPool({
     connectionLimit: 3,
-    host: 'localhost',
+    host: '52.69.46.152',
     user: 'kmucsHI',
     database: 'cabinet',
     password: 'kmucs'
@@ -22,16 +22,16 @@ router.get('/', function(req, res, next) {
 
 router.post('/',function(req,res,next){
 	 pool.getConnection(function (err, connection) {
-       
+
 	//로그인 화면에서 입력한 정보들
 	var login_id=req.body.studentID;
         var login_name=req.body.sname;
         var login_pwd=req.body.pwd;
-	
+
 	//관리자는 페이지
 	if(login_id=='kmucs'&login_name=='manager'&login_pwd=='kmucs')
 	res.redirect('/manager');
-	 
+
 
 
 
@@ -39,7 +39,7 @@ router.post('/',function(req,res,next){
         connection.query('SELECT * FROM student_infos WHERE S_Id = ? AND S_Name = ?',[login_id,login_name],function(err,rows) {
             if (err) throw err;
          var message="";
-	
+
 	//쿼리로 값을 셀렉트하는데 성공하면(정보가 있으면)
           if(rows.length!= 0)
             {
@@ -79,5 +79,3 @@ router.post('/',function(req,res,next){
 
 
 module.exports = router;
-                        
-

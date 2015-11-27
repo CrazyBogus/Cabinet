@@ -4,7 +4,7 @@ var router = express.Router();
 
 var pool = mysql.createPool({
   connectionLimit: 3,
-  host: 'localhost',
+  host: '52.69.46.152',
   user: 'kmucsHI',
   database: 'cabinet',
   password: 'kmucs'
@@ -56,7 +56,26 @@ router.get('/', function(req, res, next) {
 
       var student_infos={ id:studentID , name:studentName, grade:studentGrade, cabinet:cabinet_number}
 
-      res.render('apply1',{ cabinet_status : cabinets , student_infos:student_infos, msg:status } );
+      
+      if(studentGrade == 1){
+        res.render('apply1',{ cabinet_status : cabinets , student_infos:student_infos, msg : status });
+
+       }
+       else if(studentGrade == 2)
+       {
+        res.render('apply2',{ cabinet_status : cabinets , student_infos:student_infos, msg : status });
+
+       }
+       else if(studentGrade ==3)
+       {
+       res.render('apply3',{ cabinet_status : cabinets , student_infos:student_infos, msg : status });
+       }
+       else
+       {
+       res.render('apply4',{ cabinet_status : cabinets , student_infos:student_infos, msg : status });
+
+       }
+
 
     });
 
@@ -86,7 +105,7 @@ router.post('/',function(req,res,next){
 	if(err) {throw err;}
 	if(row.length==0) applyFlag='0';
 	else applyFlag='1';
-   //신청가능한 시간인가 
+   //신청가능한 시간인가
 
 
 if(applyFlag=='1'){ //신청가능 시간이면
@@ -175,7 +194,7 @@ if(applyFlag=='1'){ //신청가능 시간이면
 }
 else{//신청 불가능한 시간이면
 	console.log('flag:');
-	console.log(applyFlag); 
+	console.log(applyFlag);
 	status=5;
 	var sendMessage="/apply?"+"id="+studentID+"&name="+studentName+"&grade="+studentGrade+"&status="+status;
         res.redirect(sendMessage);
@@ -206,4 +225,3 @@ var getParameter = function (param,my_url) {
 
 
 module.exports = router;
-
